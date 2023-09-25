@@ -1,0 +1,44 @@
+https://spoonacular.com/recipeImages/{id}-{width}x{height}.{format}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    position: relative;
+}
+
+nav li a {
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+}
+
+nav .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    list-style-type: none;
+    padding: 0;
+}
+
+nav li:hover .dropdown {
+    display: block;
+}
+
+/* Styling for the search container */
+.search-container {
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* Styling for the grid of results */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
