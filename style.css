@@ -26,3 +26,21 @@ header {
     gap: 1rem;
     margin: 2rem;
 }
+
+.meal-card {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.meal-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.meal-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
