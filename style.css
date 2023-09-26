@@ -42,3 +42,9 @@ nav li:hover .dropdown {
     gap: 20px;
     padding: 20px;
 }
+
+.recipe-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}

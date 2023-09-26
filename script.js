@@ -29,16 +29,30 @@ document.getElementById('search-btn').addEventListener('click', async () => {
 
 //Displays the search results on the grid. MealDB uses strMeal and strMealThumb for title and images respectfully. So using an or operator handles data from either api.
     resultsContainer.innerHTML = combinedData.map(recipe => {
+        let link;
+        switch (recipe.source) {
+            case 'edamam':
+                link = `detail-card.html?id=${recipe.id}&source=edamam`;
+                break;
+            case 'spoonacular':
+                link = `/detail-card.html?id=${recipe.id}&source=spoonacular`; 
+                break;
+            case 'themealdb':
+                link = `/detail-card.html?id=${recipe.id}&source=themealdb`;  
+                break;
+            default:
+                link = "#";
+        }
         const title = recipe.title || recipe.strMeal;
         const image = recipe.image || recipe.strMealThumb;
         console.log(title, image)
         return `
+        <a href="${link}" class="recipe-link">
         <div class="recipe-card">
             <img src="${image}" alt="${title}">
             <h3>${title}</h3>
-            <p>${recipe.description}</p>
-            ${recipe.calories ? `<p>Calories: ${recipe.calories}</p>` : ''}
-        </div>`
+        </div>
+        </a>`
 })
 });
 //fetches the data from url and structures it in JSON. Show error if something goes wrong.
@@ -58,30 +72,63 @@ function normalizeData(data, source) {
             return { 
                 title: data.label, 
                 image: data.image,
-                description: data.source,  
-                // Using 'source' as a description for Edamam
-                calories: Math.round(data.calories) 
+                url: data.url  // URL for the recipe on Edamam 
             };
         // case 'spoonacular':
         //     return { title: data.title, image: data.image };
         case 'spoonacular':
-            return { title: data.title, 
+            return { 
+                title: data.title, 
                 image: `https://spoonacular.com/recipeImages/${data.id}-480x360.jpg`,
-                description: data.sourceUrl,  
-                // Using 'sourceUrl' as a description for Spoonacular
-                calories: null  
-                // Spoonacular's search endpoint doesn't provide calories. You'd need a different endpoint for detailed info. 
-            };
+                id: data.id  // ID for the recipe on Spoonacular
+             };
         case 'themealdb':
             return { 
                 title: data.strMeal, 
                 image: data.strMealThumb,
-                description: data.strInstructions.substring(0, 100) + "...",  
-                // Taking the first 100 characters of the instructions as a description
-                calories: null  
-                // TheMealDB doesn't provide calorie info in its standard API
+                id: data.idMeal  // ID for the recipe on TheMealDB 
             };
         default:
             return {};
     }
 }
+    
+document.addEventListener("DOMContentLoaded", async function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const recipeId = urlParams.get('id');
+    const source = urlParams.get('source');
+
+    let recipeDetails;
+
+    switch (source) {
+        case 'edamam':
+            // Fetch detailed data from Edamam using the recipeId
+            // Note: You might need a different endpoint or method to fetch detailed data.
+            break;
+        case 'spoonacular':
+            const spoonacularResponse = await fetch(`https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=YOUR_API_KEY`);
+            recipeDetails = await spoonacularResponse.json();
+            break;
+        case 'themealdb':
+            const mealDbResponse = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}`);
+            recipeDetails = (await mealDbResponse.json()).meals[0];
+            break;
+        default:
+            console.error("Unknown source");
+            return;
+    }
+
+    const detailContainer = document.getElementById('recipe-detail-container');
+
+    detailContainer.innerHTML = `
+        <img src="${recipeDetails.image}" alt="${recipeDetails.title}">
+        <h2>${recipeDetails.title}</h2>
+        <p>Calories: ${recipeDetails.calories}</p>
+        <h3>Ingredients:</h3>
+        <ul>
+            ${recipeDetails.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
+        </ul>
+        <h3>Nutrition Details:</h3>
+        // Render nutrition details as needed
+    `;
+});
