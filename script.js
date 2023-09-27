@@ -30,6 +30,9 @@ function displayResults(meals) {
             <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
             <h3>${meal.strMeal}</h3>
         `;
+        mealCard.addEventListener('click', () => {
+            window.location.href = `details.html?id=${meal.idMeal}`;
+        });
         resultsGrid.appendChild(mealCard);
     });
 }
