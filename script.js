@@ -19,6 +19,7 @@ let apiUrl = '';
         .catch(error => {
             console.error('Error fetching data:', error);
         });
+       
 }
 //Here we create the displayResults function that uses meals as a parameter. We search  for the html  element with the id resultsGrid then we declare  it as a  variable, then clear it with ''
 function displayResults(meals) {
@@ -39,4 +40,5 @@ function displayResults(meals) {
         //This line appends the mealCard element (which now contains the meal's image and name) to the resultsGrid element.
         resultsGrid.appendChild(mealCard);
     });
+  
 }

@@ -30,12 +30,28 @@ let player;
 //The displayMealDetails function takes the meal (object containing details about a meal) parameter as an argument 
 //Retrieve specific elements from the DOM.
 // Update these elements with data from the meal object
-// Populate an ingredient list based on the ingredients and measures in the meal object
     function displayMealDetails(meal) {
     document.getElementById('mealImage').src = meal.strMealThumb;
     document.getElementById('mealName').textContent = meal.strMeal;
-    document.getElementById('instructions').textContent = meal.strInstructions;
 
+     // Split the instructions at each \r\n
+     const steps = meal.strInstructions.split(/\r\n/);
+
+     // Create an ordered list for the steps
+     const instructionsList = document.createElement('ul');
+     steps.forEach(step => {
+         if (step.trim() !== '') { // Ensure we don't add empty steps
+             const listItem = document.createElement('li');
+             listItem.textContent = step;
+             instructionsList.appendChild(listItem);
+         }
+     });
+     // Append the ordered list to the instructions container
+     const instructionsContainer = document.getElementById('instructions');
+     instructionsContainer.innerHTML = ''; // Clear any existing content
+     instructionsContainer.appendChild(instructionsList);
+    // document.getElementById('instructions').textContent = meal.strInstructions;
+// Populate an ingredient list based on the ingredients and measures in the meal object
     const ingredientList = document.getElementById('ingredientList');
     for (let i = 1; i <= 20; i++) {
         const ingredient = meal[`strIngredient${i}`];
@@ -69,6 +85,16 @@ let player;
     }
 }
 function onPlayerReady(event) {
-    // I can autoplay the video or add other controls here if  I need
+    // I can autoplay the video or add other controls here if I need
     // event.target.playVideo();
 }
+   // Handle the 'Go Back' button click
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('backButton').addEventListener('click', function() {
+        window.history.back();
+    });
+    // Handle the 'Home' button click
+    document.getElementById('homeButton').addEventListener('click', function() {
+        window.location.href = '/'; // Assuming your homepage is the root. Adjust the URL if needed.
+    });
+});

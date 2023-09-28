@@ -45,29 +45,57 @@ header {
     border-radius: 8px;
 }
 
-.video-popup {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    z-index: 1000;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    display: none; 
-}
-
-.video-popup iframe {
-    max-width: 100%;
-    max-height: 100%;
-}
-
-button {
-    background-color: #FFC107;
-    border: none;
+#backButton, #homeButton {
+    background-color: #5C6BC0;
+    color: white;
     padding: 10px 20px;
+    border: none;
     border-radius: 5px;
+    margin: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-button:hover {
-    background-color: #E0A800;
+#backButton:hover, #homeButton:hover {
+    background-color: #4A5AA9;
 }
+
+.meal-details {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+}
+
+#mealImage {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+#mealName {
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+#ingredientList {
+    list-style-type: disc;
+    padding-left: 40px;
+}
+
+#instructions {
+    margin-top: 20px;
+}
+
+.video-container {
+    display: flex;
+    justify-content: center; /* Horizontally center */
+    align-items: center;     /* Vertically center */
+    height: 60vh;            /* Vertical space the container to occupy */
+}
+
+#youtubeVideo {
+    max-width: 80%;  /* Maximum width of the video */
+    margin: 0 auto;  /* Further centering if the width is restricted */
+}
+
