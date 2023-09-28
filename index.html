@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Food World</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./package/dist/css/jsvectormap.css"/>
+    <script src="./package/dist/js/jsvectormap.min.js"></script>
     <script defer src="script.js"></script>
 </head>
 <body>
     <header>
         <h1>Food Destinations</h1>
     </header>
+
     <main>
         <section class="search-section">
             <input type="text" id="searchInput" placeholder="Search for a meal or area...">
@@ -19,11 +23,15 @@
                 <option value="area">By Area</option>
             </select>
             <button onclick="searchMeal()">Search</button>
+            <i class="fas fa-plane" id="planeIcon"></i>
         </section>
+        <div id="map" style="width: 100%; height: 500px;"></div>
         <section class="results-section">
             <div id="resultsGrid"></div>
         </section>
     </main>
-    
+
+    <script src="./package/dist/maps/world.js"></script>
+    <script src="./package/dist/maps/world-merc.js"></script>
 </body>
 </html>
