@@ -44,3 +44,30 @@ header {
     height: auto;
     border-radius: 8px;
 }
+
+.video-popup {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: none; 
+}
+
+.video-popup iframe {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+button {
+    background-color: #FFC107;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #E0A800;
+}
