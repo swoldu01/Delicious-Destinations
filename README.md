@@ -1,41 +1,62 @@
-Recipe App - Connecting to a 3rd Party API using Vanilla JavaScript
-Overview:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Discovery Website - Documentation</title>
+</head>
+<body>
+<img src="/assets/Screenshot 2023-09-28 at 11.14.44 PM.png" alt="Meal Discovery Logo" width="200">
+<h1>Meal Discovery Website</h1>
 
-The Recipe App is a simple web application developed using foundational web technologies: HTML, CSS, and JavaScript. The primary function of the app is to fetch and showcase recipes from a third-party API. Users will be able to search for recipes and view detailed instructions, ingredient lists, and related images.
+<p>Discover meals from around the world with our interactive search tool. Dive deep into each meal's details, ingredients, and even watch a video on how to prepare it. Additionally, explore meals by region with our interactive world map.</p>
 
-Objectives:
-Seamlessly connect to a 3rd party recipe API.
-Offer a search capability for users to find recipes based on keywords or ingredients.
-Display a list of recipes matching the search criteria.
-Show detailed information of a chosen recipe.
-Expected Features:
-Search Bar: Allows users to type in keywords or ingredients.
-Recipe Display Panel: A dynamic area that updates with recipes matching the search criteria.
-Recipe Detail View: On clicking a recipe, the user is presented with detailed information including preparation steps, ingredient lists, and images.
-Responsive Design: The app should be usable on both desktop and mobile devices.
+<h2>Features</h2>
 
-Expected Challenges:
-API Integration: Interfacing with a third-party API and handling potential errors or data inconsistencies.
-DOM Manipulation: Efficiently updating and rendering content on the web page as users search and select recipes.
-Async Handling: Managing asynchronous API calls and updating the UI in a seamless manner.
-Styling & Responsiveness: Ensuring a user-friendly design that's responsive across various device sizes.
-Rate Limiting: Dealing with potential rate limits set by the third-party API.
+<ul>
+    <li><strong>Search by Meal or Area</strong>: Users can search for meals by their name or by the region they come from.</li>
+    <li><strong>Detailed Meal Information</strong>: Click on a meal to get detailed information, including ingredients, preparation steps, and a video guide.</li>
+    <li><strong>Responsive Design</strong>: The website is designed to be user-friendly on both desktop and mobile devices.</li>
+</ul>
 
-Technical Stack:
-Structure: HTML for the basic structure and layout of the web application.
-Styling: CSS for all design, styling, and responsiveness aspects.
-Functionality: Vanilla JavaScript to handle user interactions, API requests, and dynamic content rendering.
-API: We'd ideally pick a widely-used recipe API such as https://www.themealdb.com/api.php, https://spoonacular.com/food-api or https://developer.edamam.com/edamam-docs-recipe-api.
+<h2>How to Use</h2>
 
-Steps to Start:
-Layout Design: Begin with a basic HTML structure, defining areas for the search bar, recipe list, and detailed view.
-Styling: Use CSS to design the layout, making it intuitive and attractive. Ensure the design is mobile-responsive.
-API Interaction: In JavaScript, use the Fetch API to interface with the chosen recipe API.
-Search Functionality: Implement the search capability, where users can type in queries and view a list of matching recipes.
-Dynamic Content: Write JavaScript functions to dynamically render recipe details on the page when a particular recipe is selected.
-Error Handling: Introduce error-handling mechanisms to manage potential issues, such as failed API requests or no search results.
-Testing: Regularly test on different browsers and devices to ensure compatibility and responsiveness.
-Deployment: Host the finished app on platforms like GitHub Pages, or Surge
+<ol>
+    <li><strong>Homepage</strong>:
+        <ul>
+            <li>Use the search bar to search for meals by name or region.</li>
+            <li>Click on any meal card to view its details.</li>
+            <li>Pending: Use the world map to explore meals by region. Regions with available meals are highlighted.</li>
+        </ul>
+    </li>
+    <li><strong>Details Page</strong>:
+        <ul>
+            <li>View detailed information about the selected meal.</li>
+            <li>Click the "Go Back" button to return to the search results.</li>
+            <li>Click the "Home" button to return to the homepage and start a new search.</li>
+            <li>View embeded youtube video of the specified dish</li>
+        </ul>
+    </li>
+</ol>
 
-Conclusion:
-The Recipe App aims to be a testament to the power and simplicity of foundational web technologies. By focusing on the basics – HTML, CSS, and JavaScript – this project will underscore the core principles of web development, emphasizing both form and function in a balanced manner.
+<h2>Technical Details</h2>
+
+<ul>
+    <li><strong>Local Storage</strong>: The website uses local storage to save search results. This ensures that when users navigate back to the homepage, their search results are still available.</li>
+    <li><strong>The IFrame player API</strong>The IFrame player API allows for embed YouTube video player on your website and control the player using JavaScript.</li>
+    <li><strong>Interactive Map</strong>: The map is powered by <code>jsVectorMap</code>, a plain JavaScript library for rendering interactive and dynamic vector-shaped world maps.</li>
+    <li><strong>API</strong>: The website fetches meal data from TheMealDB API.</li>
+    <li><strong>ChatGPT<strong>: Some of the code was provided by AI.</li>
+</ul>
+
+<h2>Future Enhancements</h2>
+
+<ul>
+    <li>Interactive World Map: Explore meals by region with our clickable world map.</li>
+    <li>Integrate user reviews and ratings for each meal.</li>
+    <li>Allow users to save their favorite meals and access them later.</li>
+    <li>Add filters to refine search results based on dietary preferences or meal type (e.g., vegetarian, vegan, dessert).</li>
+</ul>
+
+</body>
+</html>
