@@ -88,14 +88,19 @@ function onPlayerReady(event) {
     // I can autoplay the video or add other controls here if I need
     // event.target.playVideo();
 }
-   // Handle the 'Go Back' button when clicked
+
+
+// Handle the 'Go Back' button click
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('backButton').addEventListener('click', function() {
+    document.getElementById('backButton').addEventListener('click', function() {  
         window.history.back();
     });
-    // Handle the 'Home' button when clicked and added an unelegant way to bring back the map. 
+
+    // Handle the 'Home' button click
     document.getElementById('homeButton').addEventListener('click', function() {
-        window.location.href = '/'; 
+        localStorage.removeItem('mealSearchResults'); // Clear the search results
+        window.location.href = '/'; // Navigate to the root
     });
-    document.getElementById('map').style.display = 'block';
+
 });
+

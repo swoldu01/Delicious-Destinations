@@ -1,8 +1,6 @@
 //Access the DOM to get html id searchInput and stores its' value in the variable searchInput. Same for searchType
 function searchMeal() {
     document.getElementById('map').style.display = 'none';
-    console.log("working")
-    // localStorage.removeItem('mealSearchResults'); //  Not nessarcy but this would clear the results so it doesn't stack
     const searchInput = document.getElementById('searchInput').value;
     const searchType = document.getElementById('searchType').value;
 //Declares the  apiUrl empty
@@ -19,9 +17,8 @@ console.log(apiUrl)
         .then(response => response.json())
         .then(data => {
             displayResults(data.meals); //calls the display function
-            console.log(data)
             // Save the results to localStorage
-            // localStorage.setItem('mealSearchResults', JSON.stringify(data.meals));
+            localStorage.setItem('mealSearchResults', JSON.stringify(data.meals));
         })
         .catch(error => {
             console.error('Error fetching data:', error);
@@ -42,7 +39,6 @@ function displayResults(meals) {
     const resultsGrid = document.getElementById('resultsGrid');
     resultsGrid.innerHTML = '';
     
-    console.log(meals)
 //Create a loop that interates over each meal in the meals array, then creates a div witha class name meal-card and then sets the innerHTML of the mealCard element to embed image and name again using template literal
     meals.forEach(meal => {
         const mealCard = document.createElement('div');
@@ -51,7 +47,6 @@ function displayResults(meals) {
             <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
             <h3>${meal.strMeal}</h3>
             `;
-            console.log(mealCard)
         //This then says if the mealCard is clicked navigate to details.html and pass the meal id as a query parameter.
         mealCard.addEventListener('click', () => {
             window.location.href = `details.html?id=${meal.idMeal}`;
@@ -62,14 +57,14 @@ function displayResults(meals) {
     
 }
 
-// //Checks if there are any saved search results in localStorage and display them.
-// document.addEventListener('DOMContentLoaded', function() {
-//     const savedResults = localStorage.getItem('mealSearchResults');
-//     if (savedResults) {
-//         displayResults(JSON.parse(savedResults));
-//     }
-// });
-
+// Checks if there are any saved search results in localStorage and display them.
+document.addEventListener('DOMContentLoaded', function() {
+    const savedResults = localStorage.getItem('mealSearchResults');
+    if (savedResults) {
+        document.getElementById('map').style.display = 'none';
+        displayResults(JSON.parse(savedResults));
+    }
+});
 
 const areaToCountryCode = {
     "American": "US",
